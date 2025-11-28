@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-commerce Home</title>
+    <script>
+        // Fetch all products
+        function fetchProducts() {
+            fetch('product')
+                .then(response => response.json())
+                .then(data => {
+                    let html = "<h3>Products:</h3><ul>";
+                    data.forEach(p => {
+                        html += "<li>" + p.productName + " | " + p.color + " | " + p.size + "</li>";
+                    });
+                    html += "</ul>";
+                    document.getElementById("products").innerHTML = html;
+                });
+        }
+
+        // Fetch all customers
+        function fetchCustomers() {
+            fetch('customer')
+                .then(response => response.json())
+                .then(data => {
+                    let html = "<h3>Customers:</h3><ul>";
+                    data.forEach(c => {
+                        html += "<li>" + c.firstName + " " + c.lastName + "</li>";
+                    });
+                    html += "</ul>";
+                    document.getElementById("customers").innerHTML = html;
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to E-commerce App</h1>
+
+    <button onclick="fetchProducts()">Show Products</button>
+    <div id="products"></div>
+
+    <button onclick="fetchCustomers()">Show Customers</button>
+    <div id="customers"></div>
+
+</body>
+</html>
